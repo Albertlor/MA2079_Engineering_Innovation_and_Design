@@ -6,12 +6,12 @@ import termios
 
 # GPIO pins for motor control
 # Modify these pins according to your setup
-enA_pin = 17
-in1_pin = 18
-in2_pin = 27
-enB_pin = 22
-in3_pin = 23
-in4_pin = 24
+enA_pin = 29
+in1_pin = 31
+in2_pin = 33
+enB_pin = 36
+in3_pin = 38
+in4_pin = 40
 
 # Setup GPIO
 GPIO.setmode(GPIO.BCM)
