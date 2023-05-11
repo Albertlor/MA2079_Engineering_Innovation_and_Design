@@ -165,7 +165,7 @@ class Pose:
             """
             ELBOW 3D COORDINATES
             """
-            with open('./database/wrist.json') as f5:
+            with open('./database/elbow.json') as f5:
                 config5 = json.load(f5)
 
             config5[f'ELBOW_{self.num_frame}'] = elbow
