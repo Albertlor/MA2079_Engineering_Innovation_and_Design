@@ -3,6 +3,7 @@ Servo myServo;
 
 int potentPin = A2;
 int potent = 0;
+int last_potent = 0;
 int degree = 0;
 
 int enableAPin = 6;
@@ -39,50 +40,61 @@ void loop()
   int joystickValue2 = analogRead(A1);
   potent = analogRead(potentPin);
   degree = round(potent / 11.4); //control the angle between 0 to 90 degrees
-  myServo.write(degree);
-  delay(15);
-  Serial.println(degree);
-
+  if (last_potent != potent){
+    myServo.write(degree);
+    delay(15);
+    Serial.println(degree);
+    last_potent = potent;
+  }
+  
   if (joystickValue >= 530)           //This will move motor in forward direction  
   {
     motorPWMSpeed = map(joystickValue, 530, 1023, 0, 255);
+    Serial.println(joystickValue);
     digitalWrite(in1Pin, HIGH);
     digitalWrite(in2Pin, LOW);    
-    analogWrite(enableAPin, motorPWMSpeed);
+    analogWrite(enableAPin, motorPWMSpeed + 700);
     digitalWrite(in3Pin, HIGH);
     digitalWrite(in4Pin, LOW);    
-    analogWrite(enableBPin, motorPWMSpeed);
+    analogWrite(enableBPin, motorPWMSpeed + 700);
+    Serial.println(motorPWMSpeed);
   }
   else if (joystickValue <= 490)      //This will move motor in reverse direction    
   {
     motorPWMSpeed = map(joystickValue, 490, 0, 0, 255);
+    Serial.println(joystickValue);
     digitalWrite(in1Pin, LOW);
     digitalWrite(in2Pin, HIGH);    
-    analogWrite(enableAPin, motorPWMSpeed);
+    analogWrite(enableAPin, motorPWMSpeed + 700);
     digitalWrite(in3Pin, LOW);
     digitalWrite(in4Pin, HIGH);    
-    analogWrite(enableBPin, motorPWMSpeed);
+    analogWrite(enableBPin, motorPWMSpeed + 700);
+    Serial.println(motorPWMSpeed);
   }  
 
   else if (joystickValue2 >= 530)           //This will move motor in forward direction  
   {
     motorPWMSpeed = map(joystickValue2, 530, 1023, 0, 255);
+    Serial.println(joystickValue2);
     digitalWrite(in1Pin, LOW);
     digitalWrite(in2Pin, HIGH);    
     analogWrite(enableAPin, motorPWMSpeed);
     digitalWrite(in3Pin, HIGH);
     digitalWrite(in4Pin, LOW);    
     analogWrite(enableBPin, motorPWMSpeed);
+    Serial.println(motorPWMSpeed);
   }
   else if (joystickValue2 <= 490)      //This will move motor in reverse direction    
   {
     motorPWMSpeed = map(joystickValue2, 490, 0, 0, 255);
+    Serial.println(joystickValue2);
     digitalWrite(in1Pin, HIGH);
     digitalWrite(in2Pin, LOW);    
     analogWrite(enableAPin, motorPWMSpeed);
     digitalWrite(in3Pin, LOW);
     digitalWrite(in4Pin, HIGH);    
     analogWrite(enableBPin, motorPWMSpeed);
+    Serial.println(motorPWMSpeed);
   }  
   else                                //Stop the motor
   {
