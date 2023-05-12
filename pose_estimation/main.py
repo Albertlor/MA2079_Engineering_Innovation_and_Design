@@ -63,44 +63,6 @@ with open('./database/knee.json', 'w') as f3:
     }, f3, indent=4)
 
 
-# def movement(stdscr):
-#     # Clear the screen and set up the curses environment
-#     stdscr.clear()
-#     curses.curs_set(0)
-#     stdscr.nodelay(True)
-
-#     # Loop until the user presses the Escape key
-#     while True:
-#         # Wait for user input
-#         key = stdscr.getch()
-#         #, curses.KEY_RIGHT, curses.KEY_UP, curses.KEY_DOWN
-#         # Check if the user pressed an arrow key
-#         if key in [curses.KEY_LEFT]:
-#             motor.left()
-#         elif key in [curses.KEY_RIGHT]:
-#             motor.right()
-#         elif key in [curses.KEY_UP]:
-#             motor.forward()
-#         elif key in [curses.KEY_DOWN]:
-#             motor.backward()
-#         # Check if the user pressed the Escape key
-#         elif key == 27:
-#             break
-#         else: 
-#             motor.stop()
-
-#         # Refresh the screen
-#         stdscr.refresh()
-
-# # Initialize the motor instance
-# ENA = 3
-# IN1 = 5
-# IN2 = 7
-# IN3 = 29
-# IN4 = 31
-# ENB = 26
-# motor = Motor(ENA, IN1, IN2, ENB, IN3, IN4)
-
 while True:
     count_frame += 1
     if video.get(cv2.CAP_PROP_FRAME_COUNT) == count_frame:
@@ -151,16 +113,14 @@ while True:
                         cv2.putText(frame, "Moving Left", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 255), 1, cv2.LINE_AA)
 
                 if front == 1:
-                    #if count_frame % 50 == 0:
-                        #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\turn_90deg.mp3")
+                    if count_frame % 50 == 0:
+                        sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\turn_90deg.mp3")
                     cv2.putText(frame, "Person is facing towards the robot, do a 90deg turn", (50, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
                 if front == 0:
                     cv2.putText(frame, "Stay in this manner", (50, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 1, cv2.LINE_AA)
                     if squat:
                         if shoulder_confidence_index == 1 and hip_confidence_index == 1:
-                            # # Perform the Pose Classification.
-                            # frame, _ = classifyPose(landmarks, frame, display=False)
                             with open('./database/shoulder.json') as f1:
                                 config1 = json.load(f1)
 
@@ -179,15 +139,15 @@ while True:
                             low_back_angle = round(abs(pose.calculateSpineAngleSquat(g_dir, shoulder, hip)), 3)
                             
                             if low_back_angle > 40:
-                                #if count_frame % 50 == 0:
-                                    #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
+                                if count_frame % 50 == 0:
+                                    sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
                                 cv2.putText(frame, "Please strighten your back!", (50, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
                             cv2.putText(frame, f"Spine Angle: {low_back_angle}", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 1, cv2.LINE_AA)
 
                         else:
-                            #if count_frame % 50 == 0:
-                                #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
+                            if count_frame % 50 == 0:
+                                sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
                             cv2.putText(frame, f"Region of Interest is not detected", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
                     if pushups:
@@ -236,15 +196,15 @@ while True:
                                         temp_cycle = 0
                                 cv2.putText(frame, f"Number of push-ups: {cycle}", (50, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 1, cv2.LINE_AA)
                             else:
-                                #if count_frame % 50 == 0:
-                                    #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
+                                if count_frame % 50 == 0:
+                                    sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
                                 temp_cycle = 0
                                 cv2.putText(frame, f"Number of push-ups: {cycle}", (50, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 1, cv2.LINE_AA)
                                 cv2.putText(frame, f"Straighten your back", (50, 170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)        
 
                         else:
-                            #if count_frame % 50 == 0:
-                                #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
+                            if count_frame % 50 == 0:
+                                sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
                             cv2.putText(frame, f"Region of Interest is not detected", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
             cv2.imshow("Frames", frame)
