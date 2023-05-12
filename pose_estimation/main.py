@@ -151,8 +151,8 @@ while True:
                         cv2.putText(frame, "Moving Left", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 255), 1, cv2.LINE_AA)
 
                 if front == 1:
-                    if count_frame % 50 == 0:
-                        sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\turn_90deg.mp3")
+                    #if count_frame % 50 == 0:
+                        #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\turn_90deg.mp3")
                     cv2.putText(frame, "Person is facing towards the robot, do a 90deg turn", (50, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
                 if front == 0:
@@ -179,15 +179,15 @@ while True:
                             low_back_angle = round(abs(pose.calculateSpineAngleSquat(g_dir, shoulder, hip)), 3)
                             
                             if low_back_angle > 40:
-                                if count_frame % 50 == 0:
-                                    sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
+                                #if count_frame % 50 == 0:
+                                    #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
                                 cv2.putText(frame, "Please strighten your back!", (50, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
                             cv2.putText(frame, f"Spine Angle: {low_back_angle}", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 1, cv2.LINE_AA)
 
                         else:
-                            if count_frame % 50 == 0:
-                                sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
+                            #if count_frame % 50 == 0:
+                                #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
                             cv2.putText(frame, f"Region of Interest is not detected", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
                     if pushups:
@@ -236,15 +236,15 @@ while True:
                                         temp_cycle = 0
                                 cv2.putText(frame, f"Number of push-ups: {cycle}", (50, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 1, cv2.LINE_AA)
                             else:
-                                if count_frame % 50 == 0:
-                                    sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
+                                #if count_frame % 50 == 0:
+                                    #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\straighten_your_back.mp3")
                                 temp_cycle = 0
                                 cv2.putText(frame, f"Number of push-ups: {cycle}", (50, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 1, cv2.LINE_AA)
                                 cv2.putText(frame, f"Straighten your back", (50, 170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)        
 
                         else:
-                            if count_frame % 50 == 0:
-                                sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
+                            #if count_frame % 50 == 0:
+                                #sound_track(r"C:\Users\Albertlor\Academic\MA2079_Engineering_Innovation_and_Design\pose_estimation\sound_track\move_backward.mp3")
                             cv2.putText(frame, f"Region of Interest is not detected", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
 
             cv2.imshow("Frames", frame)
